@@ -1,0 +1,83 @@
+package com.crimes;
+
+public class Criminal {
+    private String name;
+    private int age;
+    private String gender;
+    private String address;
+    private String identifyingMark;
+    private String areaOfArrest;
+    private String crimeAttached;
+    
+    public Criminal(String name, int age, String gender, String address, String identifyingMark, 
+                    String areaOfArrest, String crimeAttached) {
+        this.name = name;
+        this.age = age;
+        this.gender = gender;
+        this.address = address;
+        this.identifyingMark = identifyingMark;
+        this.areaOfArrest = areaOfArrest;
+        this.crimeAttached = crimeAttached;
+    }
+    
+
+	// Getters and setters for all the attributes
+    public String getName() {
+        return name;
+    }
+    
+    public void setName(String name) {
+        this.name = name;
+    }
+    
+    public int getAge() {
+        return age;
+    }
+    
+    public void setAge(int age) {
+        this.age = age;
+    }
+    
+    public String getGender() {
+        return gender;
+    }
+    
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+    
+    public String getAddress() {
+        return address;
+    }
+    
+    public void setAddress(String address) {
+        this.address = address;
+    }
+    
+    public String getIdentifyingMark() {
+        return identifyingMark;
+    }
+    
+    public void setIdentifyingMark(String identifyingMark) {
+        this.identifyingMark = identifyingMark;
+    }
+    
+    public String getAreaOfArrest() {
+        return areaOfArrest;
+    }
+    
+    public void setAreaOfArrest(String areaOfArrest) {
+        this.areaOfArrest = areaOfArrest;
+    }
+    
+    public String getAttachedCrime() {
+        return crimeAttached;
+    }
+    
+    public void setAttachedCrime(String crimeAttached) {
+        this.crimeAttached = crimeAttached;
+    }
+
+
+    
+}
