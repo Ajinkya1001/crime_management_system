@@ -1,0 +1,128 @@
+package com.crimes;
+
+import java.time.LocalDate;
+import java.time.Month;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
+public class CriminalManagementSystem {
+    private List<Crime> crimes = new ArrayList<>();
+    private List<Criminal> criminals = new ArrayList<>();
+    private PoliceStation policeStation;
+
+    public CriminalManagementSystem() {
+    	this.crimes = new ArrayList<>();
+    	this.criminals = new ArrayList<>();
+        crimes = new ArrayList<>();
+        criminals = new ArrayList<>();
+        
+    }
+
+    public CriminalManagementSystem(PoliceStation policeStation) {
+    	this.policeStation = policeStation;
+	}
+
+	public void addCrime(String dateAndPlace, String description, int numVictims,
+                         String detailedDescription, String suspects) {
+        Crime crime = new Crime(dateAndPlace, description, numVictims, detailedDescription,"suspect1", "suspect2", "suspect3");
+        crimes.add(crime);
+        System.out.println("Crime recorded successfully.");
+    }
+	
+    public void addSuspect(String name,int age, String gender, String address, String identifyingMark,
+                           String areaOfActivity, String crimeAttached) {
+		Suspect suspect = new Suspect(name, age, gender, address, identifyingMark, areaOfActivity, crimeAttached);
+        Crime crime = findCrimeByDescription(crimeAttached);
+        if (crime != null) {
+            crime.addSuspect(suspect);
+            System.out.println("Suspect added to crime successfully.");
+        } else {
+            System.out.println("Crime not found.");
+        }
+    }
+
+    public void recordCriminal(String name,int age, String gender, String address,
+                               String identifyingMark, String areaOfArrest, String crimeAttached) {
+        Criminal criminal = new Criminal(name, age, gender, address, identifyingMark, areaOfArrest, crimeAttached);
+        criminals.add(criminal);
+        System.out.println("Criminal recorded successfully.");
+    }
+
+
+    public List<Criminal> searchCriminalsByName(String name) {
+        System.out.println("Searching for criminals with name: " + name);
+        List<Criminal> matchingCriminals = criminals.stream()
+                .filter(c -> c.getName().equals(name))
+                .collect(Collectors.toList());
+        System.out.println("Found " + matchingCriminals.size() + " matching criminals:");
+        matchingCriminals.forEach(c -> System.out.println(c.getName()));
+        return matchingCriminals;
+    }
+
+
+    public void searchForCrimeByDateAndPlace(String dateAndPlace) {
+        Crime crime = findCrimeByDateAndPlace(dateAndPlace);
+        if (crime == null) {
+            System.out.println("Crime not found.");
+        } else {
+            System.out.println("Matching crime:");
+            System.out.println(crime);
+        }
+    }
+
+    public int getNumberOfSolvedCrimes() {
+        return (int) crimes.stream().filter(Crime::isSolved).count();
+    }
+
+    public int getNumberOfUnsolvedCrimes() {
+        return (int) crimes.stream().filter(c -> !c.isSolved()).count();
+    }
+
+    public int getNumberOfCrimesRecordedThisMonth() {
+        LocalDate now = LocalDate.now();
+        Month thisMonth = now.getMonth();
+        return (int) crimes.stream().filter(c -> c.getRecordedDate().getMonth() == thisMonth).count();
+    }
+
+    private Crime findCrimeByDescription(String description) {
+        return crimes.stream()
+                .filter(c -> c.getDescription().equals(description))
+                .findFirst().orElse(null);
+    }
+
+    private Crime findCrimeByDateAndPlace(String dateAndPlace) {
+        return crimes.stream()
+                .filter(c -> c.getDateAndPlace().equals(dateAndPlace))
+                .findFirst().orElse(null);
+    }
+
+	public PoliceStation getPoliceStation() {
+		return policeStation;
+	}
+
+	public void setPoliceStation(PoliceStation policeStation) {
+		this.policeStation = policeStation;
+	}
+
+	public void addSuspect(String suspectName, String suspectAge, String suspectGender, String suspectAddress,
+			String suspectIdentifyingMark, String suspectArrestArea, String suspectCrimeattached) {
+		int age = Integer.parseInt(suspectAge);
+		Suspect suspect = new Suspect(suspectName, age, suspectGender, suspectAddress, suspectIdentifyingMark, suspectArrestArea, suspectCrimeattached);
+	    policeStation.addSuspect(suspect);
+	    System.out.println("Suspect added successfully.");
+		
+	}
+
+
+	public void recordCriminal(String criminalName, String criminalAge, String criminalGender, String criminalAddress,
+			String criminalIdentifyingMark, String criminalAreaOfArrest, String criminalCrimeAttached) {
+		int age = Integer.parseInt(criminalAge);
+	    Criminal criminal = new Criminal(criminalName, age, criminalGender, criminalAddress, criminalIdentifyingMark, criminalAreaOfArrest, criminalCrimeAttached);
+	    policeStation.addCriminal(criminal);
+	    System.out.println("Criminal recorded successfully.");
+		
+	}
+
+	
+}
