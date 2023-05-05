@@ -1,0 +1,77 @@
+package com.crimes;
+
+public class Suspect {
+    private String name;
+    private int age;
+    private String gender;
+    private String address;
+    private String identifyingMark;
+    private String arrestArea;
+    private Crime attachedCrime;
+	private String crimeAttached;
+
+    public Suspect(String name, int age, String gender, String address, String identifyingMark, String arrestArea, String crimeAttached) {
+        this.name = name;
+        this.age = age;
+        this.gender = gender;
+        this.address = address;
+        this.identifyingMark = identifyingMark;
+        this.arrestArea = arrestArea;
+        this.setCrimeAttached(crimeAttached);
+    }
+
+   
+	public String getName() {
+        return name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public String getIdentifyingMark() {
+        return identifyingMark;
+    }
+
+    public String getArrestArea() {
+        return arrestArea;
+    }
+
+    public Crime getAttachedCrime() {
+        return attachedCrime;
+    }
+
+    public void setAttachedCrime(Crime attachedCrime) {
+        this.attachedCrime = attachedCrime;
+    }
+
+	public String getCrimeAttached() {
+		return crimeAttached;
+	}
+
+	public void setCrimeAttached(String crimeAttached) {
+		this.crimeAttached = crimeAttached;
+	}
+
+
+	@Override
+	public String toString() {
+		return "Suspect [name=" + name + ", age=" + age + ", gender=" + gender + ", address=" + address
+				+ ", identifyingMark=" + identifyingMark + ", arrestArea=" + arrestArea + ", attachedCrime="
+				+ attachedCrime + ", crimeAttached=" + crimeAttached + ", getName()=" + getName() + ", getAge()="
+				+ getAge() + ", getGender()=" + getGender() + ", getAddress()=" + getAddress()
+				+ ", getIdentifyingMark()=" + getIdentifyingMark() + ", getArrestArea()=" + getArrestArea()
+				+ ", getAttachedCrime()=" + getAttachedCrime() + ", getCrimeAttached()=" + getCrimeAttached()
+				+ ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString()
+				+ "]";
+	}
+	
+}
