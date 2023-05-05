@@ -1,0 +1,133 @@
+package com.crimes;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+public class Crime {
+    private String date;
+    private String place;
+    private String description;
+    private List<String> victims;
+    private String details;
+    private List<String> suspected;
+	private boolean solved;
+	private String dateAndPlace;
+	private int numVictims;
+	private String detailedDescription;
+	private ArrayList<String> suspects;
+	private boolean isSolved;
+	private LocalDate recordedDate;
+
+	public Crime(String dateAndPlace, String description, int numVictims, String detailedDescription, String... suspects) {
+	    this.dateAndPlace = dateAndPlace;
+	    this.description = description;
+	    this.numVictims = numVictims;
+	    this.detailedDescription = detailedDescription;
+	    this.suspects = new ArrayList<String>(Arrays.asList(suspects));
+	}
+    
+
+	public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getPlace() {
+        return place;
+    }
+
+    public void setPlace(String place) {
+        this.place = place;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public List<String> getVictims() {
+        return victims;
+    }
+
+    public void setVictims(List<String> victims) {
+        this.victims = victims;
+    }
+
+    public String getDetails() {
+        return details;
+    }
+
+ 
+
+	public boolean isSolved() {
+        return solved;
+    }
+
+    public void solveCrime() {
+        this.solved = true;
+    }
+    public boolean getIsSolved() {
+        return isSolved;
+    }
+	public String getDateAndPlace() {
+		return dateAndPlace;
+	}
+	public void setDateAndPlace(String dateAndPlace) {
+		this.dateAndPlace = dateAndPlace;
+	}
+	public int getNumVictims() {
+		return numVictims;
+	}
+	public void setNumVictims(int numVictims) {
+		this.numVictims = numVictims;
+	}
+	public String getDetailedDescription() {
+		return detailedDescription;
+	}
+	public void setDetailedDescription(String detailedDescription) {
+		this.detailedDescription = detailedDescription;
+	}
+	public ArrayList<String> getSuspects() {
+		return suspects;
+	}
+	public void setSuspects(ArrayList<String> suspects) {
+		this.suspects = suspects;
+	}
+	public void setSolved(boolean isSolved) {
+		this.isSolved = isSolved;
+	}
+	public void addSuspect(String suspect) {
+		suspects.add(suspect);	
+	}
+	public LocalDate getRecordedDate() {
+		return recordedDate;
+	}
+
+
+	public List<String> getSuspected() {
+		return suspected;
+	}
+
+
+	public void setSuspected(List<String> suspected) {
+		this.suspected = suspected;
+	}
+
+
+	public void addSuspect(Suspect suspect) {
+		String suspectName = suspect.getName();
+	    suspects.add(suspectName);	
+	}
+
+
+	
+
+}
