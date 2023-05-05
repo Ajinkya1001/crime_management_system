@@ -1,0 +1,115 @@
+package com.crimes;
+
+import java.util.List;
+import java.util.Scanner;
+
+public class CriminalManagementSystemMain {
+
+	    public static void main(String[] args) {
+	        Scanner scanner = new Scanner(System.in);
+	        PoliceStation policeStation = new PoliceStation("Central Police Station");
+	        CriminalManagementSystem cms = new CriminalManagementSystem(policeStation);
+
+	        boolean exit = false;
+
+	        while (!exit) {
+	            System.out.println("Select an option:");
+	            System.out.println("1. Add a crime");
+	            System.out.println("2. Add a suspect");
+	            System.out.println("3. Record a criminal");
+	            System.out.println("4. Search for a criminal by name");
+	            System.out.println("5. Search for a crime by date and place");
+	            System.out.println("6. Get number of solved and unsolved crimes");
+	            System.out.println("7. Get number of crimes recorded this month");
+	            System.out.println("8. Exit");
+
+	            int choice = scanner.nextInt();
+	            scanner.nextLine(); // consume newline
+
+	            switch (choice) {
+	                case 1:
+	                    System.out.println("Enter date and place of the crime:");
+	                    String dateAndPlace = scanner.nextLine();
+	                    System.out.println("Enter description of the crime:");
+	                    String description = scanner.nextLine();
+	                    System.out.println("Enter the number of victims:");
+	                    int numVictims = scanner.nextInt();
+	                    scanner.nextLine(); // consume newline
+	                    System.out.println("Enter a detailed description of the crime:");
+	                    String detailedDescription = scanner.nextLine();
+	                    System.out.println("Enter the names of the main suspects separated by commas:");
+	                    String suspects = scanner.nextLine();
+	                    cms.addCrime(dateAndPlace, description, numVictims, detailedDescription, suspects);
+	                    break;
+	                case 2:
+	                    System.out.println("Enter the name of the suspect:");
+	                    String suspectName = scanner.nextLine();
+	                    System.out.println("Enter the age of the suspect:");
+	                    String suspectAge = scanner.nextLine();
+	                    System.out.println("Enter the gender of the suspect:");
+	                    String suspectGender = scanner.nextLine();
+	                    System.out.println("Enter the address of the suspect:");
+	                    String suspectAddress = scanner.nextLine();
+	                    System.out.println("Enter the identifying mark in the face of the criminal:");
+	                    String suspectIdentifyingMark = scanner.nextLine();
+	                    System.out.println("Enter the area of the crime where the criminal was first arrested:");
+	                    String suspectArrestArea = scanner.nextLine();
+	                    System.out.println("Enter the crime the criminal is attached to:");
+	                    String suspectCrimeattached = scanner.nextLine();
+	                    cms.addSuspect(suspectName, suspectAge, suspectGender, suspectAddress, suspectIdentifyingMark, suspectArrestArea, suspectCrimeattached);
+	                    break;
+	                case 3:
+	                    System.out.println("Enter the name of the criminal:");
+	                    String criminalName = scanner.nextLine();
+	                    System.out.println("Enter the age of the criminal:");
+	                    String criminalAge = scanner.nextLine();
+	                    System.out.println("Enter the gender of the criminal:");
+	                    String criminalGender = scanner.nextLine();
+	                    System.out.println("Enter the address of the criminal:");
+	                    String criminalAddress = scanner.nextLine();
+	                    System.out.println("Enter the identifying mark in the face of the criminal:");
+	                    String criminalIdentifyingMark = scanner.nextLine();
+	                    System.out.println("Enter the area of the crime where the criminal was first arrested:");
+	                    String criminalAreaOfArrest = scanner.nextLine();
+	                    System.out.println("Enter the crime the criminal is attached to:");
+	                    String criminalCrimeAttached = scanner.nextLine();
+	                    cms.recordCriminal(criminalName, criminalAge, criminalGender, criminalAddress,
+	                            criminalIdentifyingMark, criminalAreaOfArrest, criminalCrimeAttached);
+	                    break;
+	                case 4:
+	                    System.out.println("Enter the name of the criminal to search for:");
+	                    String nameToSearch = scanner.nextLine();
+	                    System.out.println("User input: " + nameToSearch); // Debug statement
+	                    List<Criminal> matchingCriminals = cms.searchCriminalsByName(nameToSearch);
+	                    if (matchingCriminals.isEmpty()) {
+	                        System.out.println("No matching criminals found.");
+	                    } else {
+	                        System.out.println("Matching criminals:");
+	                        matchingCriminals.forEach(System.out::println);
+	                    }
+	                    break;
+
+
+	                case 5:
+	                    System.out.println("Enter the date and place of the crime to search for:");
+	                    String crimeToSearch = scanner.nextLine();
+	                    cms.searchForCrimeByDateAndPlace(crimeToSearch);
+	                    break;
+	                case 6:
+	                	System.out.println("Number of solved crimes: " + cms.getNumberOfSolvedCrimes());
+	                	System.out.println("Number of unsolved crimes: " + cms.getNumberOfUnsolvedCrimes());
+	                	break;
+	                	case 7:
+	                	System.out.println("Number of crimes recorded this month: " + cms.getNumberOfCrimesRecordedThisMonth());
+	                	break;
+	                	case 8:
+	                	exit = true;
+	                	System.out.println("Thank you for using the Criminal Management System.");
+	                	break;
+	                	default:
+	                	System.out.println("Invalid input. Please try again.");
+	                	break;
+	                	}
+	                	}scanner.close();
+	                	}
+        	}
