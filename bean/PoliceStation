@@ -1,0 +1,75 @@
+package com.crimes;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
+public class PoliceStation {
+    private String name;
+    private List<Crime> recordedCrimes;
+    private List<Suspect> suspects;
+    private List<Criminal> criminals;
+    
+
+    public PoliceStation(String name) {
+        this.name = name;
+        this.recordedCrimes = new ArrayList<>();
+        suspects = new ArrayList<>();
+        criminals = new ArrayList<>();
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public List<Crime> getRecordedCrimes() {
+        return recordedCrimes;
+    }
+
+    public void addRecordedCrime(Crime crime) {
+        recordedCrimes.add(crime);
+    }
+
+    public int getNumberOfSolvedCrimes() {
+        int count = 0;
+        for (Crime crime : recordedCrimes) {
+            if (crime.isSolved()) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public int getNumberOfUnsolvedCrimes() {
+        int count = 0;
+        for (Crime crime : recordedCrimes) {
+            if (!crime.isSolved()) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public int getNumberOfCrimesRecordedThisMonth() {
+        int count = 0;
+        for (Crime crime : recordedCrimes) {
+            LocalDate crimeDate = LocalDate.parse(crime.getDate());
+            if (crimeDate.getMonthValue() == LocalDate.now().getMonthValue()
+                    && crimeDate.getYear() == LocalDate.now().getYear()) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+	public void addSuspect(Suspect suspect) {
+		suspects.add(suspect);
+	}
+
+	public void addCriminal(Criminal criminal) {
+		criminals.add(criminal);
+        System.out.println("Criminal added successfully.");
+	}
+
+	
+}
